@@ -1,28 +1,48 @@
-# Netflix-to-AniList
-Simple chrome extension which syncs your netflix activity with AniList
+# Netflix to AniList Sync
 
-## What's Included
+A lightweight browser extension that automatically tracks the anime you watch on Netflix and updates your progress on your AniList profile!
 
-- **Extension Framework:** All the necessary files (`manifest.json`, background worker, content scripts, and a popup UI).
-- **AniList Authentication:** Integrated OAuth2 login using the Client ID.
-- **Netflix Tracking:** A content script that monitors the Netflix player for the show title and episode number.
-- **Customizable Settings:** 
-  - Choose between updating on "Next Episode Click" or after a specific "Percentage Watched".
-  - A beautiful, glassmorphic UI.
+## Features
+- **Automatic Tracking:** Updates your AniList when you click "Next Episode" or watch a certain percentage of an episode.
+- **Customizable:** Change the update trigger in the extension popup.
+- **Premium UI:** A sleek, glassmorphic design that looks great in dark mode.
 
-## Next Steps for You
+---
 
-Since this extension is not on the Chrome Web Store right now, you need to load it as an "Unpacked Extension" in Chrome. Here is how to do it and link it to your AniList app:
+## 🛠️ How to Install (For Any Chromium Browser)
 
-> [!IMPORTANT]
-> **Step 1: Load the Extension**
-> 1. Open Google Chrome (or any chromium based browser) and go to `chrome://extensions/` (or whatever your browser is, for me its vivaldi:extensions as i use vivaldi) .
-> 2. Enable **Developer mode** (toggle in the top right corner).
-> 3. Click the **Load unpacked** button.
-> 4. Select the `Anilist Extension` folder.
+This extension works on Google Chrome, Microsoft Edge, Brave, Opera, and other Chromium-based browsers. 
 
-> [!TIP]
-> **Step 2: Connect and Test!**
-> 1. Open the extension popup again and click **Connect AniList**.
-> 2. It will ask you to log in to AniList and authorize the app.
-> 3. Once connected, open Netflix, start watching an anime, and let me know if it tracks properly!
+Since this extension is not currently on the Chrome Web Store, you will need to install it manually using the provided `.crx` file. It only takes a minute!
+
+### Step 1: Download the Extension
+Download the latest `Anilist Extension.crx` file from the [Releases](#) tab on this GitHub page.
+
+### Step 2: Open your Extensions Page
+Open a new tab in your browser and go to the extensions page:
+- **Chrome / Brave:** Type `chrome://extensions` in the URL bar and press Enter.
+- **Edge:** Type `edge://extensions` in the URL bar and press Enter.
+- **Opera:** Type `opera://extensions` in the URL bar and press Enter.
+- It will be the same for whatever browser you use so basically just browser://extensions
+
+### Step 3: Enable Developer Mode
+Look for a switch that says **Developer mode** (usually in the top right corner or left sidebar) and **turn it ON**. 
+
+### Step 4: Install the `.crx` file
+1. Locate the `Anilist Extension.crx` file you downloaded on your computer.
+2. **Drag and drop** the `.crx` file directly anywhere onto the Extensions page you just opened.
+3. Your browser will ask if you want to add the extension. Click **Add Extension**.
+
+### Step 5: Connect your AniList!
+1. Pin the extension to your toolbar for easy access.
+2. Click the Netflix 'N' icon to open the extension popup.
+3. Click **Connect AniList** and log in to your account.
+4. Start watching anime on Netflix!
+
+> **Note:** If your browser blocks the `.crx` installation for security reasons, you can also download the Source Code (ZIP), extract it to a folder, and click the **Load unpacked** button on the Extensions page to select the extracted folder.
+
+---
+
+## 🐛 Troubleshooting
+- **It didn't track my episode!** Netflix's website changes frequently. Open the extension settings and try changing the "Update Trigger" from "Next Episode Button" to "Percentage Watched". 
+- **"Anime not found" error?** Netflix sometimes uses slightly different titles than AniList. Currently, the extension searches AniList for the exact English/Romaji title Netflix provides. 
