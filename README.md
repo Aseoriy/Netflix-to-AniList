@@ -4,7 +4,7 @@ Simple chrome extension which syncs your netflix activity with AniList
 ## What's Included
 
 - **Extension Framework:** All the necessary files (`manifest.json`, background worker, content scripts, and a popup UI).
-- **AniList Authentication:** Integrated OAuth2 login using the `41599` Client ID you provided.
+- **AniList Authentication:** Integrated OAuth2 login using the Client ID.
 - **Netflix Tracking:** A content script that monitors the Netflix player for the show title and episode number.
 - **Customizable Settings:** 
   - Choose between updating on "Next Episode Click" or after a specific "Percentage Watched".
