@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "Netflix AniList Sync",
+  "version": "1.0",
+  "description": "Automatically update your AniList when you watch anime on Netflix.",
+  "permissions": [
+    "storage",
+    "identity"
+  ],
+  "host_permissions": [
+    "*://*.netflix.com/*",
+    "*://graphql.anilist.co/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.netflix.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Netflix AniList Sync"
+  }
+}

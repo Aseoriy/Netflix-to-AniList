@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Netflix AniList Sync</title>
+  <link rel="stylesheet" href="popup.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container glass-effect">
+    <header>
+      <div class="logo">
+        <span class="netflix">N</span>
+        <span class="sync-icon">⇄</span>
+        <span class="anilist">AL</span>
+      </div>
+      <h1>Sync Settings</h1>
+    </header>
+
+    <main>
+      <div id="auth-section" class="section">
+        <p id="status-text">Not connected to AniList</p>
+        <button id="login-btn" class="primary-btn">Connect AniList</button>
+        <button id="logout-btn" class="secondary-btn hidden">Disconnect</button>
+        
+        <div class="redirect-info">
+          <p>Redirect URI (for Developer Settings):</p>
+          <code id="redirect-uri">Loading...</code>
+        </div>
+      </div>
+
+      <div class="section settings-section">
+        <h3>Preferences</h3>
+        
+        <div class="setting-item">
+          <label for="update-trigger">Update Trigger</label>
+          <select id="update-trigger">
+            <option value="next_episode">Next Episode Button (Default)</option>
+            <option value="percentage">Percentage Watched</option>
+          </select>
+        </div>
+
+        <div class="setting-item" id="percentage-setting-group">
+          <label for="percentage-threshold">Watch Threshold (%)</label>
+          <input type="range" id="percentage-threshold" min="10" max="100" value="80" step="5">
+          <span id="percentage-display">80%</span>
+        </div>
+
+        <div class="setting-item">
+          <label class="toggle">
+            <span class="toggle-label">Manual Link Fallback</span>
+            <input type="checkbox" id="manual-link">
+            <span class="slider"></span>
+          </label>
+          <p class="setting-desc">Prompt to manually link if auto-match fails.</p>
+        </div>
+      </div>
+
+      <div class="section log-section">
+        <h3>Recent Activity</h3>
+        <ul id="activity-log">
+          <li class="log-item empty">No recent activity</li>
+        </ul>
+      </div>
+    </main>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
