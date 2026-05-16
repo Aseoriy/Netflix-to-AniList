@@ -15,13 +15,22 @@ chrome.runtime.onInstalled.addListener(() => {
   });
 });
 
+function addLog(message, isSuccess = true) {
+  chrome.storage.local.get(['activityLogs'], (result) => {
+    let logs = result.activityLogs || [];
+    logs.unshift({ time: Date.now(), message, isSuccess });
+    if (logs.length > 50) logs.pop();
+    chrome.storage.local.set({ activityLogs: logs });
+  });
+}
+
 async function getAccessToken() {
   return new Promise((resolve, reject) => {
     chrome.storage.local.get(['anilistToken'], (result) => {
       if (result.anilistToken) {
         resolve(result.anilistToken);
       } else {
-        reject('No token found');
+        reject(new Error('No token found. Please connect your AniList account.'));
       }
     });
   });
@@ -202,11 +211,21 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       })
       .then(result => {
         console.log(`Successfully updated progress to episode ${result.progress}`);
+        addLog(`Updated ${title} to Episode ${episode}`, true);
         sendResponse({ success: true, result });
       })
       .catch(error => {
         console.error(`Failed to update progress:`, error);
-        sendResponse({ success: false, error: error.message });
+        let errorMsg = error.message;
+        if (!errorMsg) {
+          try {
+             errorMsg = typeof error === 'string' ? error : JSON.stringify(error);
+          } catch(e) {
+             errorMsg = 'Unknown error';
+          }
+        }
+        addLog(`Failed: ${title} Ep ${episode} - ${errorMsg}`, false);
+        sendResponse({ success: false, error: errorMsg });
       });
       
     return true; // async

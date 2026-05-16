@@ -114,4 +114,44 @@ document.addEventListener('DOMContentLoaded', () => {
   manualLinkInput.addEventListener('change', () => {
     saveSettings();
   });
+
+  function loadLogs() {
+    chrome.storage.local.get(['activityLogs'], (result) => {
+      const logList = document.getElementById('activity-log');
+      const logs = result.activityLogs || [];
+      
+      logList.innerHTML = '';
+      
+      if (logs.length === 0) {
+        logList.innerHTML = '<li class="log-item empty">No recent activity</li>';
+        return;
+      }
+      
+      logs.forEach(log => {
+        const li = document.createElement('li');
+        li.className = 'log-item';
+        
+        const date = new Date(log.time);
+        const timeStr = date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+        
+        li.innerHTML = `
+          <span class="log-time">${timeStr}</span>
+          <span style="color: ${log.isSuccess ? 'var(--success)' : 'var(--netflix-red)'}">
+            ${log.message}
+          </span>
+        `;
+        logList.appendChild(li);
+      });
+    });
+  }
+
+  // Load logs initially
+  loadLogs();
+
+  // Listen for new logs
+  chrome.storage.onChanged.addListener((changes, namespace) => {
+    if (namespace === 'local' && changes.activityLogs) {
+      loadLogs();
+    }
+  });
 });
