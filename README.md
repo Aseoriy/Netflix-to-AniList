@@ -4,8 +4,8 @@ A lightweight browser extension that automatically tracks the anime you watch on
 
 ## Features
 - **Automatic Tracking:** Updates your AniList when you click "Next Episode" or watch a certain percentage of an episode.
-- **Customizable:** Change the update trigger in the extension popup.
-- **Premium UI:** A sleek, glassmorphic design that looks great in dark mode.
+- **Customizable "not really":** Change the update trigger in the extension popup.
+- **Premium UI:** A pretty nice design that looks great in dark mode.
 
 ---
 
